@@ -1,0 +1,8 @@
+Part 3 office, HDD18 3800:
+
+$ python3 sb10_selector.py --part9 no --hdd 3800
+
+Division 3 climate zone (Table 1.3.1.1): Zone 5 at HDD18 3800
+Division 3: choose ONE - (a) ASHRAE 90.1-2013 + SB-10 Ch. 2 ... (b) NECB 2015 + SB-10 Ch. 3 ... (c) ASHRAE 189.1-2014 Section 7 only.
+Overlays on every Division 3 path: CO2e cap (Art. 1.1.2.2) and peak electric demand cap (Art. 1.1.2.3).
+Zone 5 is the zone whose opaque-element table (SB 5.5-5-2017) is reproduced in this tool.
