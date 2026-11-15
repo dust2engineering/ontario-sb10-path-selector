@@ -1,0 +1,161 @@
+{
+ "code": "Ontario Building Code 2024, Supplementary Standard SB-10 (Energy Efficiency Requirements)",
+ "structure": {
+  "division_3": "Default for all buildings. Choose ONE reference standard (Art. 1.1.2.1.(1)): (a) ASHRAE 90.1-2013 + SB-10 Chapter 2; (b) NECB 2015 + SB-10 Chapter 3; (c) ASHRAE 189.1-2014 Section 7 only. Within 90.1: prescriptive Sections 5-10 or performance Section 11 (Energy Cost Budget). Within NECB: prescriptive/trade-off or Part 8 performance.",
+  "division_5": "Simplified prescriptive division, available only where the building or part is within Part 9, contains no residential occupancy, does not use electric space heating, and is occupied on a continuing basis through the winter. If fenestration exceeds 40% of wall area or skylights exceed 3% of ceiling area, the envelope must comply with Division 3 instead.",
+  "part_9_residential": "Part 9 buildings of residential occupancy are excepted from SB-10 Division 3 (Art. 1.2.1.1.(1)(a)) - houses follow OBC Subsection 12.2.2 / SB-12, not SB-10.",
+  "existing_buildings": "Change of use and renovation route through OBC Part 10 / Part 11, outside these SB-10 paths.",
+  "target": "Division 3 paths target on average a 13% improvement over the 2012 OBC efficiency level (Sentence 12.2.1.1.(2) as it read Dec 31, 2024)."
+ },
+ "overlays_on_every_division_3_path": {
+  "co2e_cap_art_1_1_2_2": "Annual CO2e emissions shall not exceed the level achieved by the prescriptive baseline of the chosen standard.",
+  "emission_factors_table_1_1_2_2": {
+   "electricity": "0.050 kgCO2e/kWh",
+   "natural gas": "1.899 kgCO2e/m3",
+   "propane": "1.548 kgCO2e/L",
+   "heating oil": "2.755 kgCO2e/L"
+  },
+  "peak_electric_demand_cap_art_1_1_2_3": "Peak electric demand shall not exceed the prescriptive-baseline level; deemed to comply where the listed prescriptive equipment and lighting-power requirements are met."
+ },
+ "climate_zones": {
+  "division_3_table_1_3_1_1": {
+   "Zone 5": "HDD18 < 4000",
+   "Zone 6": "4000 <= HDD18 < 5000",
+   "Zone 7": "HDD18 >= 5000",
+   "note": "HDD18 from SB-1 Table 2. Where electric space heating is used, the envelope shall comply with the Zone 7 table (SB 5.5-7) regardless of location (90.1 path)."
+  },
+  "necb_path_zones": {
+   "Zone 5": "3000-3999",
+   "Zone 6": "4000-4999",
+   "Zone 7A/7B": "5000-6999",
+   "Zone 8": ">= 7000"
+  },
+  "division_5_table_1_1_1_2": {
+   "Zone 1": "< 5000 degree-days",
+   "Zone 2": ">= 5000 degree-days"
+  }
+ },
+ "division_5_table_1_1_1_2_si": [
+  {
+   "element": "Roofs without attic",
+   "zone_1": "U-0.164 / RSI 6.2 ci",
+   "zone_2": "U-0.143 / RSI 7.0 ci"
+  },
+  {
+   "element": "Roofs with attic",
+   "zone_1": "U-0.107 / RSI 10.6",
+   "zone_2": "U-0.087 / RSI 12.5"
+  },
+  {
+   "element": "Walls above grade (all types)",
+   "zone_1": "U-0.250 / RSI 2.3+2.6 ci",
+   "zone_2": "U-0.250 / RSI 2.3+2.6 ci"
+  },
+  {
+   "element": "Below-grade walls",
+   "zone_1": "C-0.284 / RSI 3.5 ci",
+   "zone_2": "C-0.284 / RSI 3.5 ci"
+  },
+  {
+   "element": "Exposed floors - mass",
+   "zone_1": "U-0.261 / RSI 3.3 ci",
+   "zone_2": "U-0.215 / RSI 4.1 ci"
+  },
+  {
+   "element": "Exposed floors - lightweight framing",
+   "zone_1": "U-0.164 / RSI 6.7+0.7 ci",
+   "zone_2": "U-0.164 / RSI 6.7+0.7 ci"
+  },
+  {
+   "element": "Slab-on-grade, unheated",
+   "zone_1": "RSI 2.6 for 1200 mm",
+   "zone_2": "RSI 2.6 for 1200 mm"
+  },
+  {
+   "element": "Slab-on-grade, heated",
+   "zone_1": "RSI 1.8 full slab",
+   "zone_2": "RSI 1.8 full slab"
+  },
+  {
+   "element": "Opaque doors",
+   "zone_1": "U-2.56",
+   "zone_2": "U-2.56"
+  },
+  {
+   "element": "Fenestration (0-40% of wall)",
+   "zone_1": "U-2.15 max, SHGC 0.40",
+   "zone_2": "U-1.94 max, SHGC 0.45"
+  },
+  {
+   "element": "Entrance doors",
+   "zone_1": "U-3.94",
+   "zone_2": "U-3.94"
+  },
+  {
+   "element": "Skylights (0-3% of roof)",
+   "zone_1": "U-2.56",
+   "zone_2": "U-2.56"
+  }
+ ],
+ "division_5_hvac_anchors": [
+  "Air economizer required where cooling capacity is 15.8 kW or more.",
+  "Heat recovery ventilator with at least 55% recovery effectiveness where outdoor air exceeds 1400 L/s or the system operates 8000 h/yr or more (subject to the 75% exhaust exception).",
+  "7-day time-clock controls with setback to 13 C and setup to 32 C.",
+  "Vertical fenestration VT/SHGC ratio not less than 1.10."
+ ],
+ "division_3_zone_5_table_SB_5_5_5_2017_opaque": [
+  {
+   "element": "Roofs, insulation entirely above deck",
+   "requirement": "U-0.164 / RSI 6.2 ci"
+  },
+  {
+   "element": "Roofs, attic and other",
+   "requirement": "U-0.107 / RSI 10.6"
+  },
+  {
+   "element": "Walls above grade - mass",
+   "requirement": "U-0.307 / RSI 3.0 ci"
+  },
+  {
+   "element": "Walls above grade - metal building",
+   "requirement": "U-0.256 / RSI 2.3+3.3 ci"
+  },
+  {
+   "element": "Walls above grade - steel-framed",
+   "requirement": "U-0.281 / RSI 2.3+2.1 ci"
+  },
+  {
+   "element": "Walls above grade - wood-framed and other",
+   "requirement": "U-0.261 / RSI 2.3+1.8 ci"
+  },
+  {
+   "element": "Below-grade walls",
+   "requirement": "C-0.380 / RSI 2.6 ci"
+  },
+  {
+   "element": "Floors - mass",
+   "requirement": "U-0.291 / RSI 2.9 ci"
+  },
+  {
+   "element": "Floors - steel joist",
+   "requirement": "U-0.194 / RSI 6.7"
+  },
+  {
+   "element": "Floors - wood framed",
+   "requirement": "U-0.169 / RSI 6.7"
+  },
+  {
+   "element": "Slab-on-grade, unheated",
+   "requirement": "F-0.810 / RSI 2.6 for 1200 mm"
+  },
+  {
+   "element": "Slab-on-grade, heated",
+   "requirement": "F-1.072 / RSI 1.8 full slab"
+  },
+  {
+   "element": "Opaque doors (swinging and nonswinging)",
+   "requirement": "U-2.56"
+  }
+ ],
+ "not_reproduced": "Zone 6 and Zone 7 values in Tables SB 5.5-6/7-2017 and the NECB-path prescriptive tables exist in SB-10 but were not extracted in this pass; the tool reports the Zone 5 table and says so, rather than inventing the other zones."
+}
