@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ontario SB-10 Path Selector | Dust 2 Engineering Inc.</title>
+<style>
+:root{color-scheme:dark}
+body{background:#0e1116;color:#e6e9ee;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:24px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto}
+h1{font-size:1.55rem;line-height:1.25;margin:.2em 0 .1em}
+h2{font-size:1.15rem;margin-top:1.6em;color:#ffd479}
+.sub{color:#9fb0c3;margin:.2em 0 1.2em}
+.card{background:#161b22;border:1px solid #2b333f;border-radius:12px;padding:18px;margin:14px 0}
+label{display:block;margin:.7em 0 .25em;color:#c8d3e0;font-size:.95rem}
+input,select,textarea{width:100%;box-sizing:border-box;background:#0e1116;color:#e6e9ee;border:1px solid #39424f;border-radius:8px;padding:9px;font-size:1rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.row{grid-template-columns:1fr}}
+button{background:#f0a832;color:#14100a;border:0;border-radius:8px;padding:11px 18px;font-size:1rem;font-weight:600;cursor:pointer;margin-top:14px}
+pre{background:#0a0d11;border:1px solid #2b333f;border-radius:10px;padding:14px;white-space:pre-wrap;word-break:break-word;font-size:.92rem}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{border:1px solid #2b333f;padding:6px 8px;text-align:left}
+th{background:#1b212b}
+.small{color:#9fb0c3;font-size:.88rem}
+a{color:#7cc4ff}
+.pass{color:#7ee2a0}.fail{color:#ff9c9c}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Ontario SB-10 Path Selector</h1>
+<p class="sub">2024 OBC Supplementary Standard SB-10 — Division 5 vs Division 3, the three reference standards, and your climate zone.</p>
+<div class="card">
+<label>Existing building (change of use / renovation)?</label>
+<select id="ex"><option value="no" selected>No — new building or addition</option><option value="yes">Yes</option></select>
+<label>Within the scope of Part 9?</label>
+<select id="p9"><option value="no" selected>No — Part 3 building</option><option value="yes">Yes — Part 9</option></select>
+<label>Residential occupancy?</label>
+<select id="res"><option value="no" selected>No</option><option value="yes">Yes</option></select>
+<label>Electric space heating?</label>
+<select id="eh"><option value="no" selected>No</option><option value="yes">Yes</option></select>
+<label>Occupied on a continuing basis through the winter? (Part 9 only)</label>
+<select id="wo"><option value="yes" selected>Yes</option><option value="no">No</option></select>
+<div class="row"><div><label>Fenestration (% of wall area)</label><input id="gl" type="number" value="30"></div>
+<div><label>Skylights (% of ceiling area)</label><input id="sk" type="number" value="0"></div></div>
+<label>Heating degree-days below 18 °C (SB-1 Table 2 for your location)</label>
+<input id="hdd" type="number" value="4500">
+<button onclick="calc()">Select my path</button>
+<pre id="out">Answer and click Select.</pre></div>
+<div class="card"><h2>Division 5 prescriptive envelope — Table 1.1.1.2 (SI)</h2>
+<table><tr><th>Element</th><th>Zone 1 (&lt; 5000 DD)</th><th>Zone 2 (≥ 5000 DD)</th></tr><tr><td>Roofs without attic</td><td>U-0.164 / RSI 6.2 ci</td><td>U-0.143 / RSI 7.0 ci</td></tr><tr><td>Roofs with attic</td><td>U-0.107 / RSI 10.6</td><td>U-0.087 / RSI 12.5</td></tr><tr><td>Walls above grade (all types)</td><td>U-0.250 / RSI 2.3+2.6 ci</td><td>U-0.250 / RSI 2.3+2.6 ci</td></tr><tr><td>Below-grade walls</td><td>C-0.284 / RSI 3.5 ci</td><td>C-0.284 / RSI 3.5 ci</td></tr><tr><td>Exposed floors - mass</td><td>U-0.261 / RSI 3.3 ci</td><td>U-0.215 / RSI 4.1 ci</td></tr><tr><td>Exposed floors - lightweight framing</td><td>U-0.164 / RSI 6.7+0.7 ci</td><td>U-0.164 / RSI 6.7+0.7 ci</td></tr><tr><td>Slab-on-grade, unheated</td><td>RSI 2.6 for 1200 mm</td><td>RSI 2.6 for 1200 mm</td></tr><tr><td>Slab-on-grade, heated</td><td>RSI 1.8 full slab</td><td>RSI 1.8 full slab</td></tr><tr><td>Opaque doors</td><td>U-2.56</td><td>U-2.56</td></tr><tr><td>Fenestration (0-40% of wall)</td><td>U-2.15 max, SHGC 0.40</td><td>U-1.94 max, SHGC 0.45</td></tr><tr><td>Entrance doors</td><td>U-3.94</td><td>U-3.94</td></tr><tr><td>Skylights (0-3% of roof)</td><td>U-2.56</td><td>U-2.56</td></tr></table>
+<p class="small">Division 5 anchors: economizer at ≥ 15.8 kW cooling; HRV at ≥ 55% effectiveness where outdoor air exceeds 1400 L/s or runtime is ≥ 8000 h/yr; 7-day time clocks with setback to 13 °C / setup to 32 °C; vertical fenestration VT/SHGC ≥ 1.10.</p></div>
+<div class="card"><h2>Division 3, ASHRAE path — Table SB 5.5-5–2017 opaque elements (Zone 5)</h2>
+<table><tr><th>Element</th><th>Requirement</th></tr><tr><td>Roofs, insulation entirely above deck</td><td>U-0.164 / RSI 6.2 ci</td></tr><tr><td>Roofs, attic and other</td><td>U-0.107 / RSI 10.6</td></tr><tr><td>Walls above grade - mass</td><td>U-0.307 / RSI 3.0 ci</td></tr><tr><td>Walls above grade - metal building</td><td>U-0.256 / RSI 2.3+3.3 ci</td></tr><tr><td>Walls above grade - steel-framed</td><td>U-0.281 / RSI 2.3+2.1 ci</td></tr><tr><td>Walls above grade - wood-framed and other</td><td>U-0.261 / RSI 2.3+1.8 ci</td></tr><tr><td>Below-grade walls</td><td>C-0.380 / RSI 2.6 ci</td></tr><tr><td>Floors - mass</td><td>U-0.291 / RSI 2.9 ci</td></tr><tr><td>Floors - steel joist</td><td>U-0.194 / RSI 6.7</td></tr><tr><td>Floors - wood framed</td><td>U-0.169 / RSI 6.7</td></tr><tr><td>Slab-on-grade, unheated</td><td>F-0.810 / RSI 2.6 for 1200 mm</td></tr><tr><td>Slab-on-grade, heated</td><td>F-1.072 / RSI 1.8 full slab</td></tr><tr><td>Opaque doors (swinging and nonswinging)</td><td>U-2.56</td></tr></table>
+<p class="small">Zone 6 and Zone 7 tables (SB 5.5-6/7–2017) and the NECB-path tables exist in SB-10 but were not extracted for this tool — the selector reports your zone and path without inventing their cell values. CO2e factors for the cap (Table 1.1.2.2): electricity 0.050 kg/kWh, natural gas 1.899 kg/m³, propane 1.548 kg/L, heating oil 2.755 kg/L.</p></div>
+<p class="small">Free tool by <b>Dust 2 Engineering Inc.</b>, Mississauga, Ontario — building permit
+drawings for restaurants and small commercial projects across the GTA, stamped by an Ontario P.Eng.
+Flat rate $3,500–$5,000. Questions or a project to discuss: open an issue in this repository.</p>
+</div>
+<script>
+function calc(){
+ const ex=document.getElementById('ex').value==='yes', p9=document.getElementById('p9').value==='yes';
+ const res=document.getElementById('res').value==='yes', eh=document.getElementById('eh').value==='yes';
+ const wo=document.getElementById('wo').value==='yes';
+ const gl=parseFloat(document.getElementById('gl').value)||0, sk=parseFloat(document.getElementById('sk').value)||0;
+ const hdd=parseFloat(document.getElementById('hdd').value)||0;
+ let out='';
+ if(ex){ out='Existing building: route through OBC Part 10 (change of use) or Part 11 (renovation) — outside the SB-10 new-building paths.'; }
+ else if(p9 && res){ out='Part 9 residential: SB-10 does not apply. Energy efficiency is OBC Subsection 12.2.2 / SB-12.'; }
+ else {
+   const z3= hdd<4000?5:(hdd<5000?6:7);
+   out+='Division 3 climate zone (Table 1.3.1.1): Zone '+z3+' at HDD18 '+hdd+'\n';
+   if(p9 && !eh && wo){
+     const z5= hdd<5000?1:2;
+     out+='Division 5 (simplified prescriptive) is AVAILABLE — Part 9, non-residential, no electric space heating, winter-occupied. Division 5 zone: Zone '+z5+' (Table 1.1.1.2, below).\n';
+     if(gl>40 || sk>3) out+='BUT: fenestration > 40% of wall or skylights > 3% of ceiling — the ENVELOPE must comply with Division 3.\n';
+     out+='Division 3 also remains available as an alternative.\n';
+   }
+   out+='Division 3: choose ONE — (a) ASHRAE 90.1-2013 + SB-10 Ch. 2 (prescriptive Sections 5–10 or Section 11 Energy Cost Budget); (b) NECB 2015 + SB-10 Ch. 3 (prescriptive/trade-off or Part 8 performance); (c) ASHRAE 189.1-2014 Section 7 only.\n';
+   out+='Overlays on every Division 3 path: CO2e cap (Art. 1.1.2.2) and peak electric demand cap (Art. 1.1.2.3).';
+   if(eh) out+='\nElectric space heating: on the 90.1 path the envelope must meet the Zone 7 table (SB 5.5-7) regardless of location.';
+ }
+ document.getElementById('out').textContent=out;
+}
+</script>
+</body>
+</html>
